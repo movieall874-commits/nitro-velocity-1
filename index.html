@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05070b">
+<title>Nitro Velocity — 3D Racing</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div id="app">
+  <section id="menu" class="screen menu-screen">
+    <div class="hero-glow"></div>
+    <img class="brandLogo" src="assets/nitro-velocity-logo.png" alt="Nitro Velocity">
+    <div class="tag">3D STREET RACING • RACE • DRIFT • DOMINATE</div>
+    <div class="panel main-panel">
+      <div class="section-title">DRIVER SETUP</div>
+      <label>PLAYER ID<input id="playerId" maxlength="24" placeholder="Enter Player ID" autocomplete="username"></label>
+      <label>PASSWORD <span class="optional">(optional for guest mode)</span><input id="password" type="password" maxlength="64" placeholder="4–64 characters" autocomplete="current-password"></label>
+      <div id="authMessage" class="authMessage"></div>
+      <div class="row">
+        <label>CAR<select id="carSelect"><option value="audi">Apex GT</option><option value="range">Titan SUV</option><option value="thar">Raptor X</option></select></label>
+        <label>TRACK<select id="trackSelect"><option value="city">Neon City</option><option value="desert">Solar Desert</option><option value="mountain">Summit Pass</option></select></label>
+      </div>
+      <button id="startBtn" class="primary big">START RACE</button>
+      <div class="miniBtns"><button id="garageBtn">GARAGE</button><button id="howBtn">CONTROLS</button><button id="saveBtn">SAVE DATA</button></div>
+    </div>
+    <div id="saved" class="saved"></div>
+  </section>
+
+  <section id="garage" class="screen hidden">
+    <button class="back" data-back>← BACK</button><h1>GARAGE</h1>
+    <div class="garageGrid">
+      <div class="garage-stage"><div id="garageCarArt" class="garageCarArt">🏎️</div><div class="garageStats" id="garageStats"></div></div>
+      <div class="panel">
+        <label>CAR<select id="garageCar"><option value="audi">Apex GT</option><option value="range">Titan SUV</option><option value="thar">Raptor X</option></select></label>
+        <label>PAINT<input id="paint" type="color" value="#ff6a00"></label>
+        <label>WHEELS<select id="wheel"><option value="sport">Sport</option><option value="luxury">Luxury</option><option value="offroad">Off-road</option></select></label>
+        <div class="upgrade-row"><button id="engineUpgrade">ENGINE +</button><button id="nitroUpgrade">NITRO +</button></div>
+        <div id="upgradeInfo" class="upgradeInfo"></div>
+        <button id="saveGarage" class="primary">SAVE GARAGE</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="controls" class="screen hidden"><button class="back" data-back>← BACK</button><h1>CONTROLS</h1><div class="panel help"><p><b>PC:</b> W / ↑ accelerate · S / ↓ brake/reverse · A / D or ← / → steer · SPACE nitro · P pause</p><p><b>Mobile:</b> LEFT · BRAKE · ACCEL · NITRO · RIGHT</p><p>Complete laps, pass checkpoints, avoid traffic and manage your nitro. Police appear when your heat rises.</p></div></section>
+
+  <section id="game" class="hidden">
+    <div id="hud">
+      <div><b id="hudSpeed">0</b><small>KM/H</small></div>
+      <div><b id="hudGear">N</b><small>GEAR</small></div>
+      <div><b id="hudLap">1/3</b><small>LAP</small></div>
+      <div class="wide"><b id="hudRace">0%</b><small>RACE</small></div>
+      <div class="wide"><b id="hudNitro">100%</b><small>NITRO</small></div>
+      <div class="alert" id="policeAlert">CLEAR</div>
+    </div>
+    <div id="crosshair">+</div><div id="message"></div>
+    <div id="minimap"><canvas id="mapCanvas" width="180" height="180"></canvas></div>
+    <div id="raceProgress"><span id="raceProgressFill"></span></div>
+    <div id="pause" class="overlay hidden"><h2>PAUSED</h2><button id="resumeBtn" class="primary">RESUME</button><button id="quitBtn">QUIT RACE</button></div>
+    <div id="busted" class="overlay hidden"><h2>BUSTED</h2><p id="bustedText">Police caught you.</p><button id="retryBtn" class="primary">RETRY</button><button id="garageReturn">GARAGE</button></div>
+    <div id="finish" class="overlay hidden"><h2>RACE COMPLETE</h2><p id="finishText"></p><button id="finishRetry" class="primary">RACE AGAIN</button><button id="finishGarage">GARAGE</button></div>
+    <div id="touch"><button data-control="left">◀</button><button data-control="brake">BRAKE</button><button data-control="accel" class="accel">ACCEL</button><button data-control="nitro" class="nitro">NITRO</button><button data-control="right">▶</button></div>
+  </section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
